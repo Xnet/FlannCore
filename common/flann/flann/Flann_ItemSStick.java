@@ -1,6 +1,6 @@
 // Coded by Flann
 
-package flann;
+package flann.flann;
 
 import java.util.List;
 
@@ -10,13 +10,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class Flann_ItemSHead extends Item {
+public class Flann_ItemSStick extends Item {
 	
 	
 	
-	public Flann_ItemSHead(int par1) {
+	public Flann_ItemSStick(int par1) {
 		super(par1);
-		setTextureFile("/flann/paxels.png");
+		setTextureFile("/flann/flann/paxels.png");
 		setCreativeTab(FlannModsCore.flanntab);
 		setHasSubtypes(true);
 		setMaxDamage(0);
@@ -25,22 +25,21 @@ public class Flann_ItemSHead extends Item {
 	@SideOnly(Side.CLIENT)
 	public int getIconFromDamage(int i){
 		switch(i){
-		case 0:return 80;
-		case 1:return 81;
-		case 2:return 82;
-		case 3:return 83;
-		case 4:return 84;
-		default:return 0;
+		case 0:return 48;
+		case 1:return 49;
+		case 2:return 50;
+		case 3:return 51;
+		default:return 255;
 		}
 	}
 	
 	@Override
 	public String getItemNameIS(ItemStack is){
 		switch(is.getItemDamage()){
-		case 0:return "sheadNeth";
-		case 1:return "sheadRed";
-		case 2:return "sheadObsid";
-		case 3:return "sheadSteel";
+		case 0:return "sPaxelStickNeth";
+		case 1:return "sPaxelStickRed";
+		case 2:return "sPaxelStickObsid";
+		case 3:return "sPaxelStickSteel";
 		default:return "itemUnknown";
 		}
 	}

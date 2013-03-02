@@ -1,6 +1,6 @@
-//coded by Flann
+// Coded by Flann
 
-package flann;
+package flann.flann;
 
 import java.util.Random;
 
@@ -10,36 +10,33 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class Flann_BlockConcrete extends Block 
+public class Flann_BlockSteel extends Block
 {
+	
 	public int tex = 0;
 	
-	protected Flann_BlockConcrete (int x, int y)
-	{		
-		super (x, Material.rock);
-		tex = y;
+	protected Flann_BlockSteel (int x, int t)
+	{
+		super (x, Material.iron);
+		tex = t;
 		setCreativeTab(FlannModsCore.flanntab);
 	}
-
-	@Override
+	
 	@SideOnly(Side.CLIENT) //Client side only
 	public String getTextureFile(){
-		return "/flann/blocks.png"; //The texture file to be used
+		return "/flann/flann/blocks.png"; //The texture file to be used
 	}
-
-	@Override
+	
 	@SideOnly(Side.CLIENT) //Client side only
-	public int getBlockTextureFromSide(int x){ //Tells it which texture from the sprite sheet
+	public int getBlockTextureFromSide(int i){ //Tells it which texture from the sprite sheet
 		return tex;
 	}
 	
-	@Override
-	public int idDropped(int par1, Random par2, int par3)
+	public int idDropped(int x, Random rand)
 	{
-		return FlannModsCore.concrete.blockID;
+		return FlannModsCore.blockSteel.blockID;
 	}
-
-	@Override
+	
 	public int quantityDropped(Random rand)
 	{
 		return 1;

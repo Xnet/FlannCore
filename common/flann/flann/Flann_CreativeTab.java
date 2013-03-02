@@ -1,6 +1,6 @@
 // Coded by Flann
 
-package flann;
+package flann.flann;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;

@@ -1,6 +1,6 @@
 // Coded by Flann
 
-package flann;
+package flann.flann;
 
 import java.util.Random;
 
@@ -29,7 +29,7 @@ public class Flann_BlockBarbedWire extends Block
 	@Override
 	@SideOnly(Side.CLIENT) //Client side only
 		public String getTextureFile(){
-		return "/flann/blocks.png"; //The texture file to be used
+		return "/flann/flann/blocks.png"; //The texture file to be used
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 // Coded by Flann
 
-package flann;
+package flann.flann;
 
 import java.io.File;
 
@@ -24,7 +24,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
 @Mod(modid="Flann",name="Flann Mods",version="1.0")
 public class FlannModsCore {
-	
 	public static int BlockID = 800;
 	public static int ItemID = 13744;
 	
@@ -474,25 +473,25 @@ public class FlannModsCore {
 			battleaxeNeth = new Flann_ItemBattleaxe(baNethID, battleaxeRow2+0, Flann_EnumToolMaterial.toolNETHBA).setItemName("nethBattle");
 			MinecraftForge.setToolClass(battleaxeNeth, "axe", 1);
 			LanguageRegistry.addName(battleaxeNeth, "Netherrack Battleaxe");
-			GameRegistry.addRecipe(new ItemStack(battleaxeNeth,1),"BBB","BIB"," B ",'B',Block.netherrack,'I',Item.stick);
+			GameRegistry.addRecipe(new ItemStack(battleaxeNeth,1),"BBB","BIB"," I ",'B',Block.netherrack,'I',Item.stick);
 		}
 		if(toolRed==true){
 			battleaxeRed = new Flann_ItemBattleaxe(baRedID, battleaxeRow2+1, Flann_EnumToolMaterial.toolREDBA).setItemName("redBattle");
 			MinecraftForge.setToolClass(battleaxeRed, "axe", 2);
 			LanguageRegistry.addName(battleaxeRed, "Redstone Battleaxe");
-			GameRegistry.addRecipe(new ItemStack(battleaxeRed,1),"BBB","BIB"," B ",'B',new ItemStack(FRM,1,3),'I',Item.stick);
+			GameRegistry.addRecipe(new ItemStack(battleaxeRed,1),"BBB","BIB"," I ",'B',new ItemStack(FRM,1,3),'I',Item.stick);
 		}
 		if(toolObsid==true){
 			battleaxeObsid = new Flann_ItemBattleaxe(baObsidID, battleaxeRow2+2, Flann_EnumToolMaterial.toolOBSIDBA).setItemName("obsidBattle");
 			MinecraftForge.setToolClass(battleaxeObsid, "axe", 3);
 			LanguageRegistry.addName(battleaxeObsid, "Obsidian Battleaxe");
-			GameRegistry.addRecipe(new ItemStack(battleaxeObsid,1),"BBB","BIB"," B ",'B',Block.obsidian,'I',Item.stick);
+			GameRegistry.addRecipe(new ItemStack(battleaxeObsid,1),"BBB","BIB"," I ",'B',Block.obsidian,'I',Item.stick);
 		}
 		if(toolSteel==true){
 			battleaxeSteel = new Flann_ItemBattleaxe(baSteelID, battleaxeRow2+3, Flann_EnumToolMaterial.toolSTEELBA).setItemName("steelBattle");
 			MinecraftForge.setToolClass(battleaxeSteel, "axe", 2);
 			LanguageRegistry.addName(battleaxeSteel, "Steel Battleaxe");
-			GameRegistry.addRecipe(new ItemStack(battleaxeSteel,1),"BBB","BIB"," B ",'B',new ItemStack(FRM,1,1),'I',Item.stick);
+			GameRegistry.addRecipe(new ItemStack(battleaxeSteel,1),"BBB","BIB"," I ",'B',new ItemStack(FRM,1,1),'I',Item.stick);
 		}
 	}
 	

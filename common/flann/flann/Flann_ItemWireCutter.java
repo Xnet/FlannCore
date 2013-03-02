@@ -1,6 +1,6 @@
 // Coded by Flann
 
-package flann;
+package flann.flann;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,7 +27,7 @@ public class Flann_ItemWireCutter extends ItemTool
     @Override
 	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
 		public String getTextureFile(){ //Tells it what texture file to use
-		return "/flann/items.png";
+		return "/flann/flann/items.png";
 	}
 
     @Override

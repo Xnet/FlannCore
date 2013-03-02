@@ -1,6 +1,6 @@
 // Coded by Flann
 
-package flann;
+package flann.flann;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,7 +28,7 @@ public class Flann_ItemStickCrafter extends Item{
 	@Override
 	@SideOnly(Side.CLIENT)
 		public String getTextureFile(){
-		return "/flann/items.png";
+		return "/flann/flann/items.png";
 	}
 
     @Override

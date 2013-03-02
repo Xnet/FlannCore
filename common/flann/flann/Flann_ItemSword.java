@@ -1,17 +1,17 @@
 // Coded by Flann
 
-package flann;
+package flann.flann;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemSword;
 
-public class Flann_ItemHoe extends ItemHoe{
+public class Flann_ItemSword extends ItemSword{
 
 	public int tex = 0;
 	
-	public Flann_ItemHoe(int i, int t, EnumToolMaterial enumtoolmaterial) {
+	public Flann_ItemSword(int i, int t, EnumToolMaterial enumtoolmaterial) {
 		super(i, enumtoolmaterial);
 		tex = t;
 		setCreativeTab(FlannModsCore.flanntab);
@@ -19,7 +19,7 @@ public class Flann_ItemHoe extends ItemHoe{
 	
 	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
 	public String getTextureFile(){ //Tells it what texture file to use
-		return "/flann/moretools.png";
+		return "/flann/flann/moretools.png";
 	}
 
 	@SideOnly(Side.CLIENT)

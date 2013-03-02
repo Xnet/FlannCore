@@ -1,4 +1,4 @@
-package flann;
+package flann.flann;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

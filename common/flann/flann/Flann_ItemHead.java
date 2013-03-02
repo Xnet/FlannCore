@@ -1,6 +1,6 @@
 // Coded by Flann
 
-package flann;
+package flann.flann;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class Flann_ItemHead extends Item {
 	
 	public Flann_ItemHead(int par1) {
 		super(par1);
-		setTextureFile("/flann/paxels.png");
+		setTextureFile("/flann/flann/paxels.png");
 		setCreativeTab(FlannModsCore.flanntab);
 		setHasSubtypes(true);
 		setMaxDamage(0);
