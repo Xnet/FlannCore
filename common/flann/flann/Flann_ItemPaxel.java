@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemPickaxe;
@@ -15,25 +16,19 @@ import net.minecraft.item.ItemTool;
 
 public class Flann_ItemPaxel extends ItemPickaxe {
     
-    public int tex = 0;
-    
-    protected Flann_ItemPaxel(int par1, int t, EnumToolMaterial par2EnumToolMaterial)
-    {
-        super(par1, par2EnumToolMaterial);
+	public String tex = "";
+	
+	
+	public Flann_ItemPaxel(int i, String t, EnumToolMaterial enumtoolmaterial) {
+		super(i, enumtoolmaterial);
 		tex = t;
 		setCreativeTab(FlannModsCore.flanntab);
 	}
 	
-    @Override
-	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
-	public String getTextureFile(){ //Tells it what texture file to use
-		return "/flann/flann/paxels.png";
-	}
-    
 	@Override
-	@SideOnly(Side.CLIENT)
-	public int getIconFromDamage(int i){ //Tells it what texture index to use
-		return tex;
+	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
+	public void updateIcons(IconRegister IR){
+		this.iconIndex = IR.registerIcon(FlannModsCore.modid + ":" + tex);
 	}
 	
 	public boolean canHarvestBlock(Block par1Block)

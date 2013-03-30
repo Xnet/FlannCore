@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
@@ -16,26 +17,17 @@ import net.minecraft.world.World;
 
 public class Flann_BlockBarbedWire extends Block
 {
-	public int tex;
-	
-	protected Flann_BlockBarbedWire (int x, int i)
+	protected Flann_BlockBarbedWire (int x)
 	{
-		super (x, i, Flann_Material.iron2);
-		setRequiresSelfNotify();
-		tex = i;
+		super (x, Flann_Material.iron2);
+		//setRequiresSelfNotify();
 		setCreativeTab(FlannModsCore.flanntab);
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT) //Client side only
-		public String getTextureFile(){
-		return "/flann/flann/blocks.png"; //The texture file to be used
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT) //Client side only
-		public int getBlockTextureFromSide(int i){ //Tells it which texture from the sprite sheet
-		return tex;
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister IR){
+		this.blockIcon = IR.registerIcon(FlannModsCore.modid + ":" + this.getUnlocalizedName2());
 	}
 	
 	@Override

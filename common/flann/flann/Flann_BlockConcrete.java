@@ -8,29 +8,21 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 
 public class Flann_BlockConcrete extends Block 
 {
-	public int tex = 0;
-	
-	protected Flann_BlockConcrete (int x, int y)
+	protected Flann_BlockConcrete (int x)
 	{		
 		super (x, Material.rock);
-		tex = y;
 		setCreativeTab(FlannModsCore.flanntab);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT) //Client side only
-	public String getTextureFile(){
-		return "/flann/flann/blocks.png"; //The texture file to be used
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT) //Client side only
-	public int getBlockTextureFromSide(int x){ //Tells it which texture from the sprite sheet
-		return tex;
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister IR){
+		this.blockIcon = IR.registerIcon(FlannModsCore.modid + ":" + this.getUnlocalizedName2());
 	}
 	
 	@Override

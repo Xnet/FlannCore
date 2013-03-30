@@ -8,46 +8,43 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 public class Flann_BlockArmedConcrete extends Block
 {
-	public int texS;//Texture Side
-	public int texTB;//Texture Top/Bottom
-	protected Flann_BlockArmedConcrete (int x,int t,int tt)
+	public Icon texT;//Texture Top
+	public Icon texB;//Texture Bottom
+	protected Flann_BlockArmedConcrete (int x)
 	{
 		super (x, Material.rock);
-		texS=t;
-		texTB=tt;
 		setCreativeTab(FlannModsCore.flanntab);
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT) //Client side only
-	public String getTextureFile(){
-		return "/flann/flann/blocks.png"; //The texture file to be used
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister IR){
+		this.blockIcon = IR.registerIcon(FlannModsCore.modid + ":" + FlannModsCore.concrete.getUnlocalizedName2());
+		this.texT = IR.registerIcon(FlannModsCore.modid + ":" + this.getUnlocalizedName2());
+		this.texB = IR.registerIcon(FlannModsCore.modid + ":" + this.getUnlocalizedName2());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT) //Client side only
-	public int getBlockTextureFromSide(int x){ //Tells it which texture from the sprite sheet
-		
-		if(x == 0){
-			return texTB;
-		}
-		else if(x == 1){
-			return texTB;
-		}
-		else{
-			return texS;	
+	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata){ //Tells it which texture from the sprite sheet
+		switch(side){
+		case 0:return texB;
+		case 1:return texT;
+		default:return blockIcon;
 		}
 	}
 	
 	@Override
 	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int m)
 	{
-		world.setBlockWithNotify(x, y, z, FlannModsCore.steelBarsDirty.blockID);
+		world.setBlock(x, y, z, FlannModsCore.steelBarsDirty.blockID);
 	}
 	
 	@Override

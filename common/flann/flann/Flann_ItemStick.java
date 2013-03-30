@@ -6,36 +6,55 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 public class Flann_ItemStick extends Item {
 	
+	public Icon tw;//Wood
+	public Icon ts;//Stone
+	public Icon ti;//Iron
+	public Icon td;//Diamond
+	public Icon tg;//Gold
+	public String tex = "";
 	
-	
-	public Flann_ItemStick(int par1) {
+	public Flann_ItemStick(int par1, String t) {
 		super(par1);
-		setTextureFile("/flann/flann/paxels.png");
 		setCreativeTab(FlannModsCore.flanntab);
 		setHasSubtypes(true);
 		setMaxDamage(0);
+		tex = t;
 	}
 	
+	@Override
+	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
+	public void updateIcons(IconRegister IR){
+		this.iconIndex = IR.registerIcon(FlannModsCore.modid + ":" + tex + "_1");
+		this.tw = IR.registerIcon(FlannModsCore.modid + ":" + tex + "_1");
+		this.ts = IR.registerIcon(FlannModsCore.modid + ":" + tex + "_2");
+		this.ti = IR.registerIcon(FlannModsCore.modid + ":" + tex + "_3");
+		this.td = IR.registerIcon(FlannModsCore.modid + ":" + tex + "_4");
+		this.tg = IR.registerIcon(FlannModsCore.modid + ":" + tex + "_5");
+	}
+	
+	@Override
 	@SideOnly(Side.CLIENT)
-	public int getIconFromDamage(int i){
+	public Icon getIconFromDamage(int i){
 		switch(i){
-		case 0:return 32;
-		case 1:return 33;
-		case 2:return 34;
-		case 3:return 35;
-		case 4:return 36;
-		default:return 255;
+		case 0:return tw;
+		case 1:return ts;
+		case 2:return ti;
+		case 3:return td;
+		case 4:return tg;
+		default:return iconIndex;
 		}
 	}
 	
 	@Override
-	public String getItemNameIS(ItemStack is){
+	public String getItemDisplayName(ItemStack is){
 		switch(is.getItemDamage()){
 		case 0:return "paxelStickWood";
 		case 1:return "paxelStickStone";

@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumToolMaterial;
@@ -15,24 +16,19 @@ import net.minecraft.world.World;
 
 public class Flann_ItemBattleaxe extends ItemAxe {
 
-	public int tex = 0;
-
-	protected Flann_ItemBattleaxe(int i, int t,
-			EnumToolMaterial enumtoolmaterial) {
+	public String tex = "";
+	
+	
+	public Flann_ItemBattleaxe(int i, String t, EnumToolMaterial enumtoolmaterial) {
 		super(i, enumtoolmaterial);
 		tex = t;
 		setCreativeTab(FlannModsCore.flanntab);
 	}
-
-	@SideOnly(Side.CLIENT)
-	// Makes sure that only the client side can call this method
-	public String getTextureFile() { // Tells it what texture file to use
-		return "/flann/flann/battleaxes.png";
-	}
-
-	@SideOnly(Side.CLIENT)
-	public int getIconFromDamage(int i) { // Tells it what texture index to use
-		return tex;
+	
+	@Override
+	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
+	public void updateIcons(IconRegister IR){
+		this.iconIndex = IR.registerIcon(FlannModsCore.modid + ":" + tex);
 	}
 
 	/**

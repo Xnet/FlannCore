@@ -4,6 +4,7 @@ package flann.flann;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -11,22 +12,18 @@ import net.minecraftforge.common.IArmorTextureProvider;
 
 public class Flann_ItemArmor extends ItemArmor implements IArmorTextureProvider{
 
-	public int tex = 0;
+	public String tex = "";
 	
-	public Flann_ItemArmor(int i, int t, EnumArmorMaterial enumarmormaterial, int j, int k) {
+	public Flann_ItemArmor(int i, String t, EnumArmorMaterial enumarmormaterial, int j, int k) {
 		super(i, enumarmormaterial, j, k);
 		tex = t;
 		setCreativeTab(FlannModsCore.flanntab);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
-	public String getTextureFile(){ //Tells it what texture file to use
-		return "/flann/flann/morearmor.png";
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public int getIconFromDamage(int i){ //Tells it what texture index to use
-		return tex;
+	public void updateIcons(IconRegister IR){
+		this.iconIndex = IR.registerIcon(FlannModsCore.modid + ":" + tex);
 	}
 	
 	@Override

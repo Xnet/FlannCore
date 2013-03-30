@@ -22,8 +22,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
-@Mod(modid="Flann",name="Flann Mods",version="1.0")
+@Mod(modid=FlannModsCore.modid,name="Flann Mods",version="1.0")
 public class FlannModsCore {
+	public static final String modid = "Flann";
+	
 	public static int BlockID = 800;
 	public static int ItemID = 13744;
 	
@@ -204,16 +206,16 @@ public class FlannModsCore {
 		LanguageRegistry.instance().addStringLocalization("itemGroup.flanntab", "en_US", "Flann Mods");
 		GameRegistry.registerFuelHandler(new Flann_FuelHandler());
 		
-		blockSteel = new Flann_BlockSteel(bSteelID,0).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setBlockName("blockSteel");
-		concrete = new Flann_BlockConcrete (concreteID, 1).setHardness(6F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("concrete");
-		armedConcrete = new Flann_BlockArmedConcrete (aConcreteID,1,2).setHardness(20F).setResistance(30F).setStepSound(Block.soundStoneFootstep).setBlockName("armedConcrete");
-		steelBars = new Flann_BlockPaneSteelBars(steelBarsID, 3).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setBlockName("steelBars");
-		steelBarsDirty = new Flann_BlockPaneSteelBarsDirty(dSteelBarsID, 4).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setBlockName("steelBarsDirty");
-		barbedWire = new Flann_BlockBarbedWire (barbedwireID, 5).setHardness(1F).setResistance(5F).setBlockName("barbedWire");
+		blockSteel = new Flann_BlockSteel(bSteelID).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("blockSteel");
+		concrete = new Flann_BlockConcrete (concreteID).setHardness(6F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("concrete");
+		armedConcrete = new Flann_BlockArmedConcrete (aConcreteID).setHardness(20F).setResistance(30F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("armedConcrete");
+		steelBars = new Flann_BlockPaneSteelBars(steelBarsID).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("steelBars");
+		steelBarsDirty = new Flann_BlockPaneSteelBarsDirty(dSteelBarsID).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("steelBarsDirty");
+		barbedWire = new Flann_BlockBarbedWire (barbedwireID).setHardness(1F).setResistance(5F).setUnlocalizedName("barbedWire");
 		
-		FRM = new Flann_ItemMaterials(frmID).setItemName("FRM");
-		wirecutter = new Flann_ItemWireCutter (wirecutterID, 16, Flann_EnumToolMaterial.WIRECUTTER).setItemName("wirecutter");
-		stickCrafter = new Flann_ItemStickCrafter(stickCrafterID,17).setItemName("stickCrafter");
+		FRM = new Flann_ItemMaterials(frmID, "FRM").setUnlocalizedName("FRM");
+		wirecutter = new Flann_ItemWireCutter (wirecutterID, "wirecutter", Flann_EnumToolMaterial.WIRECUTTER).setUnlocalizedName("wirecutter");
+		stickCrafter = new Flann_ItemStickCrafter(stickCrafterID, "stickCrafter").setUnlocalizedName("stickCrafter");
 		
 		if(vanPaxel == true){
 			vanillaPaxels();
@@ -324,16 +326,15 @@ public class FlannModsCore {
 	}
 	
 	public static void vanillaPaxels(){
-		stickIngot = new Flann_ItemStick(stickID).setItemName("stickIngot");
-		headIngot = new Flann_ItemHead(headID).setItemName("headIngot");
-		bodyIngot = new Flann_ItemBody(bodyID).setItemName("bodyIngot");
+		stickIngot = new Flann_ItemStick(stickID, "stickIngot").setUnlocalizedName("stickIngot");
+		headIngot = new Flann_ItemHead(headID, "headIngot").setUnlocalizedName("headIngot");
+		bodyIngot = new Flann_ItemBody(bodyID, "bodyIngot").setUnlocalizedName("bodyIngot");
 		
-		int paxelRow = 0;
-		paxelWood = new Flann_ItemPaxel(pWoodID, paxelRow+0, Flann_EnumToolMaterial.WOODP).setItemName("paxelWood");
-		paxelStone = new Flann_ItemPaxel(pStoneID, paxelRow+1, Flann_EnumToolMaterial.STONEP).setItemName("paxelStone");
-		paxelIron = new Flann_ItemPaxel(pIronID, paxelRow+2, Flann_EnumToolMaterial.IRONP).setItemName("paxelIron");
-		paxelDiamond = new Flann_ItemPaxel(pDiamondID, paxelRow+3, Flann_EnumToolMaterial.DIAMONDP).setItemName("paxelDiamond");
-		paxelGold = new Flann_ItemPaxel(pGoldID, paxelRow+4, Flann_EnumToolMaterial.GOLDP).setItemName("paxelGold");
+		paxelWood = new Flann_ItemPaxel(pWoodID, "paxelWood", Flann_EnumToolMaterial.WOODP).setUnlocalizedName("paxelWood");
+		paxelStone = new Flann_ItemPaxel(pStoneID, "paxelStone", Flann_EnumToolMaterial.STONEP).setUnlocalizedName("paxelStone");
+		paxelIron = new Flann_ItemPaxel(pIronID, "paxelIron", Flann_EnumToolMaterial.IRONP).setUnlocalizedName("paxelIron");
+		paxelDiamond = new Flann_ItemPaxel(pDiamondID, "paxelDiamond", Flann_EnumToolMaterial.DIAMONDP).setUnlocalizedName("paxelDiamond");
+		paxelGold = new Flann_ItemPaxel(pGoldID, "paxelGold", Flann_EnumToolMaterial.GOLDP).setUnlocalizedName("paxelGold");
 		
 		MinecraftForge.setToolClass(paxelWood, "pickaxe", 0);
 		MinecraftForge.setToolClass(paxelStone, "pickaxe", 1);
@@ -388,13 +389,12 @@ public class FlannModsCore {
 	}
 	
 	public static void extraPaxels(){
-		sstickIngot = new Flann_ItemSStick(sstickID).setItemName("sstickIngot");
-		sheadIngot = new Flann_ItemSHead(sheadID).setItemName("sheadIngot");
-		sbodyIngot = new Flann_ItemSBody(sbodyID).setItemName("sbodyIngot");
+		sstickIngot = new Flann_ItemSStick(sstickID, "sstickIngot").setUnlocalizedName("sstickIngot");
+		sheadIngot = new Flann_ItemSHead(sheadID, "sheadIngot").setUnlocalizedName("sheadIngot");
+		sbodyIngot = new Flann_ItemSBody(sbodyID, "sbodyIngot").setUnlocalizedName("sbodyIngot");
 		
-		int spaxelRow = 16;
 		if(toolNeth==true){
-			spaxelNeth = new Flann_ItemPaxel(pNethID, spaxelRow+0, Flann_EnumToolMaterial.toolNETHP).setItemName("spaxelNeth");
+			spaxelNeth = new Flann_ItemPaxel(pNethID, "spaxelNeth", Flann_EnumToolMaterial.toolNETHP).setUnlocalizedName("spaxelNeth");
 			MinecraftForge.setToolClass(spaxelNeth, "pickaxe", 1);
 			LanguageRegistry.addName(new ItemStack(sstickIngot,1,0), "Netherrack Paxelsticks");
 			LanguageRegistry.addName(new ItemStack(sheadIngot,1,0), "Netherrack Paxelhead");
@@ -406,7 +406,7 @@ public class FlannModsCore {
 			GameRegistry.addRecipe(new ItemStack(spaxelNeth,1),"  h"," b ","s  ",Character.valueOf('h'),new ItemStack(sheadIngot,1,0),Character.valueOf('b'),new ItemStack(sbodyIngot,1,0),Character.valueOf('s'),new ItemStack(sstickIngot,1,0));
 		}
 		if(toolRed==true){
-			spaxelRed = new Flann_ItemPaxel(pRedID, spaxelRow+1, Flann_EnumToolMaterial.toolREDP).setItemName("spaxelRed");
+			spaxelRed = new Flann_ItemPaxel(pRedID, "spaxelRed", Flann_EnumToolMaterial.toolREDP).setUnlocalizedName("spaxelRed");
 			MinecraftForge.setToolClass(spaxelRed, "pickaxe", 2);
 			LanguageRegistry.addName(new ItemStack(sstickIngot,1,1), "Redstone Paxelsticks");
 			LanguageRegistry.addName(new ItemStack(sheadIngot,1,1), "Redstone Paxelhead");
@@ -418,7 +418,7 @@ public class FlannModsCore {
 			GameRegistry.addRecipe(new ItemStack(spaxelRed,1),"  h"," b ","s  ",Character.valueOf('h'),new ItemStack(sheadIngot,1,1),Character.valueOf('b'),new ItemStack(sbodyIngot,1,1),Character.valueOf('s'),new ItemStack(sstickIngot,1,1));
 		}
 		if(toolObsid==true){
-			spaxelObsid = new Flann_ItemPaxel(pObsidID, spaxelRow+2, Flann_EnumToolMaterial.toolOBSIDP).setItemName("spaxelObsid");
+			spaxelObsid = new Flann_ItemPaxel(pObsidID, "spaxelObsid", Flann_EnumToolMaterial.toolOBSIDP).setUnlocalizedName("spaxelObsid");
 			MinecraftForge.setToolClass(spaxelObsid, "pickaxe", 3);
 			LanguageRegistry.addName(new ItemStack(sstickIngot,1,2), "Obsidian Paxelsticks");
 			LanguageRegistry.addName(new ItemStack(sheadIngot,1,2), "Obsidian Paxelhead");
@@ -430,7 +430,7 @@ public class FlannModsCore {
 			GameRegistry.addRecipe(new ItemStack(spaxelObsid,1),"  h"," b ","s  ",Character.valueOf('h'),new ItemStack(sheadIngot,1,2),Character.valueOf('b'),new ItemStack(sbodyIngot,1,2),Character.valueOf('s'),new ItemStack(sstickIngot,1,2));
 		}
 		if(toolSteel==true){
-			spaxelSteel = new Flann_ItemPaxel(pSteelID, spaxelRow+3, Flann_EnumToolMaterial.toolSTEELP).setItemName("spaxelSteel");
+			spaxelSteel = new Flann_ItemPaxel(pSteelID, "spaxelSteel", Flann_EnumToolMaterial.toolSTEELP).setUnlocalizedName("spaxelSteel");
 			MinecraftForge.setToolClass(spaxelSteel, "pickaxe", 2);
 			LanguageRegistry.addName(new ItemStack(sstickIngot,1,3), "Steel Paxelsticks");
 			LanguageRegistry.addName(new ItemStack(sheadIngot,1,3), "Steel Paxelhead");
@@ -444,12 +444,11 @@ public class FlannModsCore {
 	}
 	
 	public static void vanillaBattleaxes(){
-		int battleaxeRow = 0;
-		battleaxeWood = new Flann_ItemBattleaxe(baWoodID, battleaxeRow+0, Flann_EnumToolMaterial.WOODBA).setItemName("battleaxeWood");
-		battleaxeStone = new Flann_ItemBattleaxe(baStoneID, battleaxeRow+1, Flann_EnumToolMaterial.STONEBA).setItemName("battleaxeStone");
-		battleaxeIron = new Flann_ItemBattleaxe(baIronID, battleaxeRow+2, Flann_EnumToolMaterial.IRONBA).setItemName("battleaxeIron");
-		battleaxeDiamond = new Flann_ItemBattleaxe(baDiamondID, battleaxeRow+3, Flann_EnumToolMaterial.DIAMONDBA).setItemName("battleaxeDiamond");
-		battleaxeGold = new Flann_ItemBattleaxe(baGoldID, battleaxeRow+4, Flann_EnumToolMaterial.GOLDBA).setItemName("battleaxeGold");
+		battleaxeWood = new Flann_ItemBattleaxe(baWoodID, "battleaxeWood", Flann_EnumToolMaterial.WOODBA).setUnlocalizedName("battleaxeWood");
+		battleaxeStone = new Flann_ItemBattleaxe(baStoneID, "battleaxeStone", Flann_EnumToolMaterial.STONEBA).setUnlocalizedName("battleaxeStone");
+		battleaxeIron = new Flann_ItemBattleaxe(baIronID, "battleaxeIron", Flann_EnumToolMaterial.IRONBA).setUnlocalizedName("battleaxeIron");
+		battleaxeDiamond = new Flann_ItemBattleaxe(baDiamondID, "battleaxeDiamond", Flann_EnumToolMaterial.DIAMONDBA).setUnlocalizedName("battleaxeDiamond");
+		battleaxeGold = new Flann_ItemBattleaxe(baGoldID, "battleaxeGold", Flann_EnumToolMaterial.GOLDBA).setUnlocalizedName("battleaxeGold");
 		MinecraftForge.setToolClass(battleaxeWood, "axe", 0);
 		MinecraftForge.setToolClass(battleaxeStone, "axe", 1);
 		MinecraftForge.setToolClass(battleaxeIron, "axe", 2);
@@ -468,27 +467,26 @@ public class FlannModsCore {
 	}
 	
 	public static void extraBattleaxes(){
-		int battleaxeRow2 = 16;
 		if(toolNeth==true){
-			battleaxeNeth = new Flann_ItemBattleaxe(baNethID, battleaxeRow2+0, Flann_EnumToolMaterial.toolNETHBA).setItemName("nethBattle");
+			battleaxeNeth = new Flann_ItemBattleaxe(baNethID, "battleaxeNeth", Flann_EnumToolMaterial.toolNETHBA).setUnlocalizedName("battleaxeNeth");
 			MinecraftForge.setToolClass(battleaxeNeth, "axe", 1);
 			LanguageRegistry.addName(battleaxeNeth, "Netherrack Battleaxe");
 			GameRegistry.addRecipe(new ItemStack(battleaxeNeth,1),"BBB","BIB"," I ",'B',Block.netherrack,'I',Item.stick);
 		}
 		if(toolRed==true){
-			battleaxeRed = new Flann_ItemBattleaxe(baRedID, battleaxeRow2+1, Flann_EnumToolMaterial.toolREDBA).setItemName("redBattle");
+			battleaxeRed = new Flann_ItemBattleaxe(baRedID, "battleaxeRed", Flann_EnumToolMaterial.toolREDBA).setUnlocalizedName("battleaxeRed");
 			MinecraftForge.setToolClass(battleaxeRed, "axe", 2);
 			LanguageRegistry.addName(battleaxeRed, "Redstone Battleaxe");
 			GameRegistry.addRecipe(new ItemStack(battleaxeRed,1),"BBB","BIB"," I ",'B',new ItemStack(FRM,1,3),'I',Item.stick);
 		}
 		if(toolObsid==true){
-			battleaxeObsid = new Flann_ItemBattleaxe(baObsidID, battleaxeRow2+2, Flann_EnumToolMaterial.toolOBSIDBA).setItemName("obsidBattle");
+			battleaxeObsid = new Flann_ItemBattleaxe(baObsidID, "battleaxeObsid", Flann_EnumToolMaterial.toolOBSIDBA).setUnlocalizedName("battleaxeObsid");
 			MinecraftForge.setToolClass(battleaxeObsid, "axe", 3);
 			LanguageRegistry.addName(battleaxeObsid, "Obsidian Battleaxe");
 			GameRegistry.addRecipe(new ItemStack(battleaxeObsid,1),"BBB","BIB"," I ",'B',Block.obsidian,'I',Item.stick);
 		}
 		if(toolSteel==true){
-			battleaxeSteel = new Flann_ItemBattleaxe(baSteelID, battleaxeRow2+3, Flann_EnumToolMaterial.toolSTEELBA).setItemName("steelBattle");
+			battleaxeSteel = new Flann_ItemBattleaxe(baSteelID, "battleaxeSteel", Flann_EnumToolMaterial.toolSTEELBA).setUnlocalizedName("battleaxeSteel");
 			MinecraftForge.setToolClass(battleaxeSteel, "axe", 2);
 			LanguageRegistry.addName(battleaxeSteel, "Steel Battleaxe");
 			GameRegistry.addRecipe(new ItemStack(battleaxeSteel,1),"BBB","BIB"," I ",'B',new ItemStack(FRM,1,1),'I',Item.stick);
@@ -496,11 +494,10 @@ public class FlannModsCore {
 	}
 	
 	public static void armorNeth(){
-		int nethRow = 0;
-		nethHelmet = new Flann_ItemArmor(heNethID, nethRow+0, Flann_EnumToolMaterial.armorNETH, 1, 0).setItemName("nethHelmet");
-		nethPlate = new Flann_ItemArmor(plNethID, nethRow+1, Flann_EnumToolMaterial.armorNETH, 1, 1).setItemName("nethPlate");
-		nethLegs = new Flann_ItemArmor(leNethID, nethRow+2, Flann_EnumToolMaterial.armorNETH, 1, 2).setItemName("nethLegs");
-		nethBoots = new Flann_ItemArmor(boNethID, nethRow+3, Flann_EnumToolMaterial.armorNETH, 1, 3).setItemName("nethBoots");
+		nethHelmet = new Flann_ItemArmor(heNethID, "nethHelmet", Flann_EnumToolMaterial.armorNETH, 1, 0).setUnlocalizedName("nethHelmet");
+		nethPlate = new Flann_ItemArmor(plNethID, "nethPlate", Flann_EnumToolMaterial.armorNETH, 1, 1).setUnlocalizedName("nethPlate");
+		nethLegs = new Flann_ItemArmor(leNethID, "nethLegs", Flann_EnumToolMaterial.armorNETH, 1, 2).setUnlocalizedName("nethLegs");
+		nethBoots = new Flann_ItemArmor(boNethID, "nethBoots", Flann_EnumToolMaterial.armorNETH, 1, 3).setUnlocalizedName("nethBoots");
 		LanguageRegistry.addName(nethHelmet, "Netherrack Helmet");
 		LanguageRegistry.addName(nethPlate, "Netherrack Chestplate");
 		LanguageRegistry.addName(nethLegs, "Netherrack Leggings");
@@ -512,11 +509,10 @@ public class FlannModsCore {
 	}
 	
 	public static void armorRed(){
-		int redRow = 16;
-		redHelmet = new Flann_ItemArmor(heRedID, redRow+0, Flann_EnumToolMaterial.armorRED, 1, 0).setItemName("redHelmet");
-		redPlate = new Flann_ItemArmor(plRedID, redRow+1, Flann_EnumToolMaterial.armorRED, 1, 1).setItemName("redPlate");
-		redLegs = new Flann_ItemArmor(leRedID, redRow+2, Flann_EnumToolMaterial.armorRED, 1, 2).setItemName("redLegs");
-		redBoots = new Flann_ItemArmor(boRedID, redRow+3, Flann_EnumToolMaterial.armorRED, 1, 3).setItemName("redBoots");
+		redHelmet = new Flann_ItemArmor(heRedID, "redHelmet", Flann_EnumToolMaterial.armorRED, 1, 0).setUnlocalizedName("redHelmet");
+		redPlate = new Flann_ItemArmor(plRedID, "redPlate", Flann_EnumToolMaterial.armorRED, 1, 1).setUnlocalizedName("redPlate");
+		redLegs = new Flann_ItemArmor(leRedID, "redLegs", Flann_EnumToolMaterial.armorRED, 1, 2).setUnlocalizedName("redLegs");
+		redBoots = new Flann_ItemArmor(boRedID, "redBoots", Flann_EnumToolMaterial.armorRED, 1, 3).setUnlocalizedName("redBoots");
 		LanguageRegistry.addName(redHelmet, "Redstone Helmet");
 		LanguageRegistry.addName(redPlate, "Redstone Chestplate");
 		LanguageRegistry.addName(redLegs, "Redstone Leggings");
@@ -528,11 +524,10 @@ public class FlannModsCore {
 	}
 	
 	public static void armorObsid(){
-		int obsidRow = 32;
-		obsidHelmet = new Flann_ItemArmor(heObsidID, obsidRow+0, Flann_EnumToolMaterial.armorOBSID, 1, 0).setItemName("obsidHelmet");
-		obsidPlate = new Flann_ItemArmor(plObsidID, obsidRow+1, Flann_EnumToolMaterial.armorOBSID, 1, 1).setItemName("obsidPlate");
-		obsidLegs = new Flann_ItemArmor(leObsidID, obsidRow+2, Flann_EnumToolMaterial.armorOBSID, 1, 2).setItemName("obsidLegs");
-		obsidBoots = new Flann_ItemArmor(boObsidID, obsidRow+3, Flann_EnumToolMaterial.armorOBSID, 1, 3).setItemName("obsidBoots");
+		obsidHelmet = new Flann_ItemArmor(heObsidID, "obsidHelmet", Flann_EnumToolMaterial.armorOBSID, 1, 0).setUnlocalizedName("obsidHelmet");
+		obsidPlate = new Flann_ItemArmor(plObsidID, "obsidPlate", Flann_EnumToolMaterial.armorOBSID, 1, 1).setUnlocalizedName("obsidPlate");
+		obsidLegs = new Flann_ItemArmor(leObsidID, "obsidLegs", Flann_EnumToolMaterial.armorOBSID, 1, 2).setUnlocalizedName("obsidLegs");
+		obsidBoots = new Flann_ItemArmor(boObsidID, "obsidBoots", Flann_EnumToolMaterial.armorOBSID, 1, 3).setUnlocalizedName("obsidBoots");
 		LanguageRegistry.addName(obsidHelmet, "Obsidian Helmet");
 		LanguageRegistry.addName(obsidPlate, "Obsidian Chestplate");
 		LanguageRegistry.addName(obsidLegs, "Obsidian Leggings");
@@ -544,11 +539,10 @@ public class FlannModsCore {
 	}
 	
 	public static void armorSteel(){
-		int steelRow = 48;
-		steelHelmet = new Flann_ItemArmor(heSteelID, steelRow+0, Flann_EnumToolMaterial.armorSTEEL, 1, 0).setItemName("steelHelmet");
-		steelPlate = new Flann_ItemArmor(plSteelID, steelRow+1, Flann_EnumToolMaterial.armorSTEEL, 1, 1).setItemName("steelPlate");
-		steelLegs = new Flann_ItemArmor(leSteelID, steelRow+2, Flann_EnumToolMaterial.armorSTEEL, 1, 2).setItemName("steelLegs");
-		steelBoots = new Flann_ItemArmor(boSteelID, steelRow+3, Flann_EnumToolMaterial.armorSTEEL, 1, 3).setItemName("steelBoots");
+		steelHelmet = new Flann_ItemArmor(heSteelID, "steelHelmet", Flann_EnumToolMaterial.armorSTEEL, 1, 0).setUnlocalizedName("steelHelmet");
+		steelPlate = new Flann_ItemArmor(plSteelID, "steelPlate", Flann_EnumToolMaterial.armorSTEEL, 1, 1).setUnlocalizedName("steelPlate");
+		steelLegs = new Flann_ItemArmor(leSteelID, "steelLegs", Flann_EnumToolMaterial.armorSTEEL, 1, 2).setUnlocalizedName("steelLegs");
+		steelBoots = new Flann_ItemArmor(boSteelID, "steelBoots", Flann_EnumToolMaterial.armorSTEEL, 1, 3).setUnlocalizedName("steelBoots");
 		LanguageRegistry.addName(steelHelmet, "Steel Helmet");
 		LanguageRegistry.addName(steelPlate, "Steel Chestplate");
 		LanguageRegistry.addName(steelLegs, "Steel Leggings");
@@ -560,12 +554,11 @@ public class FlannModsCore {
 	}
 	
 	public static void toolsNeth(){
-		int nethRow = 0;
-		nethSword = new Flann_ItemSword(swNethID, nethRow+0, Flann_EnumToolMaterial.toolNETH).setItemName("nethSword");
-		nethSpade = new Flann_ItemSpade(spNethID, nethRow+1, Flann_EnumToolMaterial.toolNETH).setItemName("nethSpade");
-		nethPick = new Flann_ItemPickaxe(piNethID, nethRow+2, Flann_EnumToolMaterial.toolNETH).setItemName("nethPick");
-		nethAxe = new Flann_ItemAxe(axNethID, nethRow+3, Flann_EnumToolMaterial.toolNETH).setItemName("nethAxe");
-		nethHoe = new Flann_ItemHoe(hoNethID, nethRow+4, Flann_EnumToolMaterial.toolNETH).setItemName("nethHoe");
+		nethSword = new Flann_ItemSword(swNethID, "nethSword", Flann_EnumToolMaterial.toolNETH).setUnlocalizedName("nethSword");
+		nethSpade = new Flann_ItemSpade(spNethID, "nethSpade", Flann_EnumToolMaterial.toolNETH).setUnlocalizedName("nethSpade");
+		nethPick = new Flann_ItemPickaxe(piNethID, "nethPick", Flann_EnumToolMaterial.toolNETH).setUnlocalizedName("nethPick");
+		nethAxe = new Flann_ItemAxe(axNethID, "nethAxe", Flann_EnumToolMaterial.toolNETH).setUnlocalizedName("nethAxe");
+		nethHoe = new Flann_ItemHoe(hoNethID, "nethHoe", Flann_EnumToolMaterial.toolNETH).setUnlocalizedName("nethHoe");
 		MinecraftForge.setToolClass(nethSpade, "shovel", 1);
 		MinecraftForge.setToolClass(nethPick, "pickaxe", 1);
 		MinecraftForge.setToolClass(nethAxe, "axe", 1);
@@ -582,12 +575,11 @@ public class FlannModsCore {
 	}
 	
 	public static void toolsRed(){
-		int redRow = 16;
-		redSword = new Flann_ItemSword(swRedID, redRow+0, Flann_EnumToolMaterial.toolRED).setItemName("redSword");
-		redSpade = new Flann_ItemSpade(spRedID, redRow+1, Flann_EnumToolMaterial.toolRED).setItemName("redSpade");
-		redPick = new Flann_ItemPickaxe(piRedID, redRow+2, Flann_EnumToolMaterial.toolRED).setItemName("redPick");
-		redAxe = new Flann_ItemAxe(axRedID, redRow+3, Flann_EnumToolMaterial.toolRED).setItemName("redAxe");
-		redHoe = new Flann_ItemHoe(hoRedID, redRow+4, Flann_EnumToolMaterial.toolRED).setItemName("redHoe");
+		redSword = new Flann_ItemSword(swRedID, "redSword", Flann_EnumToolMaterial.toolRED).setUnlocalizedName("redSword");
+		redSpade = new Flann_ItemSpade(spRedID, "redSpade", Flann_EnumToolMaterial.toolRED).setUnlocalizedName("redSpade");
+		redPick = new Flann_ItemPickaxe(piRedID, "redPick", Flann_EnumToolMaterial.toolRED).setUnlocalizedName("redPick");
+		redAxe = new Flann_ItemAxe(axRedID, "redAxe", Flann_EnumToolMaterial.toolRED).setUnlocalizedName("redAxe");
+		redHoe = new Flann_ItemHoe(hoRedID, "redHoe", Flann_EnumToolMaterial.toolRED).setUnlocalizedName("redHoe");
 		MinecraftForge.setToolClass(redSpade, "shovel", 2);
 		MinecraftForge.setToolClass(redPick, "pickaxe", 2);
 		MinecraftForge.setToolClass(redAxe, "axe", 2);
@@ -604,12 +596,11 @@ public class FlannModsCore {
 	}
 	
 	public static void toolsObsid(){
-		int obsidRow = 32;
-		obsidSword = new Flann_ItemSword(swObsidID, obsidRow+0, Flann_EnumToolMaterial.toolOBSID).setItemName("obsidSword");
-		obsidSpade = new Flann_ItemSpade(spObsidID, obsidRow+1, Flann_EnumToolMaterial.toolOBSID).setItemName("obsidSpade");
-		obsidPick = new Flann_ItemPickaxe(piObsidID, obsidRow+2, Flann_EnumToolMaterial.toolOBSID).setItemName("obsidPick");
-		obsidAxe = new Flann_ItemAxe(axObsidID, obsidRow+3, Flann_EnumToolMaterial.toolOBSID).setItemName("obsidAxe");
-		obsidHoe = new Flann_ItemHoe(hoObsidID, obsidRow+4, Flann_EnumToolMaterial.toolOBSID).setItemName("obsidHoe");
+		obsidSword = new Flann_ItemSword(swObsidID, "obsidSword", Flann_EnumToolMaterial.toolOBSID).setUnlocalizedName("obsidSword");
+		obsidSpade = new Flann_ItemSpade(spObsidID, "obsidSpade", Flann_EnumToolMaterial.toolOBSID).setUnlocalizedName("obsidSpade");
+		obsidPick = new Flann_ItemPickaxe(piObsidID, "obsidPick", Flann_EnumToolMaterial.toolOBSID).setUnlocalizedName("obsidPick");
+		obsidAxe = new Flann_ItemAxe(axObsidID, "obsidAxe", Flann_EnumToolMaterial.toolOBSID).setUnlocalizedName("obsidAxe");
+		obsidHoe = new Flann_ItemHoe(hoObsidID, "obsidHoe", Flann_EnumToolMaterial.toolOBSID).setUnlocalizedName("obsidHoe");
 		MinecraftForge.setToolClass(obsidSpade, "shovel", 3);
 		MinecraftForge.setToolClass(obsidPick, "pickaxe", 3);
 		MinecraftForge.setToolClass(obsidAxe, "axe", 3);
@@ -626,12 +617,11 @@ public class FlannModsCore {
 	}
 	
 	public static void toolsSteel(){
-		int steelRow = 48;
-		steelSword = new Flann_ItemSword(swSteelID, steelRow+0, Flann_EnumToolMaterial.toolSTEEL).setItemName("steelSword");
-		steelSpade = new Flann_ItemSpade(spSteelID, steelRow+1, Flann_EnumToolMaterial.toolSTEEL).setItemName("steelSpade");
-		steelPick = new Flann_ItemPickaxe(piSteelID, steelRow+2, Flann_EnumToolMaterial.toolSTEEL).setItemName("steelPick");
-		steelAxe = new Flann_ItemAxe(axSteelID, steelRow+3, Flann_EnumToolMaterial.toolSTEEL).setItemName("steelAxe");
-		steelHoe = new Flann_ItemHoe(hoSteelID, steelRow+4, Flann_EnumToolMaterial.toolSTEEL).setItemName("steelHoe");
+		steelSword = new Flann_ItemSword(swSteelID, "steelSword", Flann_EnumToolMaterial.toolSTEEL).setUnlocalizedName("steelSword");
+		steelSpade = new Flann_ItemSpade(spSteelID, "steelSpade", Flann_EnumToolMaterial.toolSTEEL).setUnlocalizedName("steelSpade");
+		steelPick = new Flann_ItemPickaxe(piSteelID, "steelPick", Flann_EnumToolMaterial.toolSTEEL).setUnlocalizedName("steelPick");
+		steelAxe = new Flann_ItemAxe(axSteelID, "steelAxe", Flann_EnumToolMaterial.toolSTEEL).setUnlocalizedName("steelAxe");
+		steelHoe = new Flann_ItemHoe(hoSteelID, "steelHoe", Flann_EnumToolMaterial.toolSTEEL).setUnlocalizedName("steelHoe");
 		MinecraftForge.setToolClass(steelSpade, "shovel", 2);
 		MinecraftForge.setToolClass(steelPick, "pickaxe", 2);
 		MinecraftForge.setToolClass(steelAxe, "axe", 2);

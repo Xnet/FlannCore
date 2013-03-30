@@ -9,28 +9,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 
 public class Flann_BlockPaneSteelBarsDirty extends BlockPane
 {
-	public int tex = 0;
-	
-	protected Flann_BlockPaneSteelBarsDirty (int x, int y)
+	protected Flann_BlockPaneSteelBarsDirty (int x)
 	{
-		super (x, y, 0, Material.iron, true);
-		tex = y;
+		super (x, "Flann:steelBarsDirty", "Flann:steelBarsDirty", Material.iron, true);
 		setCreativeTab(FlannModsCore.flanntab);
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT) //Client side only
-		public String getTextureFile(){
-		return "/flann/flann/blocks.png"; //The texture file to be used
-	}
-	
-	@SideOnly(Side.CLIENT) //Client side only
-		public int getBlockTextureFromSide(int i){ //Tells it which texture from the sprite sheet
-		return tex;
 	}
 	
 	@Override
