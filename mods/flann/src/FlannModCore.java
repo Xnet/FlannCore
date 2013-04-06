@@ -65,6 +65,7 @@ public class FlannModCore {
 	public static boolean exPaxel,exBattleaxe;
 	public static boolean armNeth,armRed,armObsid,armSteel;
 	public static boolean toolNeth,toolRed,toolObsid,toolSteel;
+	public static boolean blockConcrete, blockAConcrete, blockBarbedwire, blockBars;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
@@ -172,6 +173,11 @@ public class FlannModCore {
 		toolObsid = config.get("general", "Obsidian Tools Enabled", true).getBoolean(true);
 		toolSteel = config.get("general", "Steel Tools Enabled", true).getBoolean(true);
 		
+		blockConcrete = config.get("general", "Concrete Enabled", true).getBoolean(true);
+		blockAConcrete = config.get("general", "Armed Concrete Enabled (requires steel bars & concrete)", true).getBoolean(true);
+		blockBarbedwire = config.get("general", "Barbedwire & Wirecutter Enabled", true).getBoolean(true);
+		blockBars = config.get("general", "Steel Bars Enabled", true).getBoolean(true);
+		
 		//boolean someConfigFlag = config.get(Configuration.CATEGORY_GENERAL, "SomeConfigFlag", false).getBoolean(false);
 		
 		config.save();
@@ -207,16 +213,28 @@ public class FlannModCore {
 		GameRegistry.registerFuelHandler(new Flann_FuelHandler());
 		
 		blockSteel = new Flann_BlockSteel(bSteelID).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("blockSteel");
-		concrete = new Flann_BlockConcrete (concreteID).setHardness(6F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("concrete");
-		armedConcrete = new Flann_BlockArmedConcrete (aConcreteID).setHardness(20F).setResistance(30F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("armedConcrete");
-		steelBars = new Flann_BlockPaneSteelBars(steelBarsID).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("steelBars");
-		steelBarsDirty = new Flann_BlockPaneSteelBarsDirty(dSteelBarsID).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("steelBarsDirty");
-		barbedWire = new Flann_BlockBarbedWire (barbedwireID).setHardness(1F).setResistance(5F).setUnlocalizedName("barbedWire");
+		
+		if(blockConcrete){
+			concrete = new Flann_BlockConcrete (concreteID).setHardness(6F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("concrete");
+		}
+		if(blockConcrete && blockAConcrete && blockBars){
+			armedConcrete = new Flann_BlockArmedConcrete (aConcreteID).setHardness(20F).setResistance(30F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("armedConcrete");
+		}
+		if(blockBarbedwire){
+			barbedWire = new Flann_BlockBarbedWire (barbedwireID).setHardness(1F).setResistance(5F).setUnlocalizedName("barbedWire");
+		}
+		if(blockBars){
+			steelBars = new Flann_BlockPaneSteelBars(steelBarsID).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("steelBars");
+			steelBarsDirty = new Flann_BlockPaneSteelBarsDirty(dSteelBarsID).setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("steelBarsDirty");
+		}
 		
 		FRM = new Flann_ItemMaterials(frmID, "FRM").setUnlocalizedName("FRM");
-		wirecutter = new Flann_ItemWireCutter (wirecutterID, "wirecutter", Flann_EnumToolMaterial.WIRECUTTER).setUnlocalizedName("wirecutter");
-		stickCrafter = new Flann_ItemStickCrafter(stickCrafterID, "stickCrafter").setUnlocalizedName("stickCrafter");
-		
+		if(blockBarbedwire){
+			wirecutter = new Flann_ItemWireCutter (wirecutterID, "wirecutter", Flann_EnumToolMaterial.WIRECUTTER).setUnlocalizedName("wirecutter");
+		}
+		if(vanPaxel || exPaxel){
+			stickCrafter = new Flann_ItemStickCrafter(stickCrafterID, "stickCrafter").setUnlocalizedName("stickCrafter");
+		}
 		if(vanPaxel == true){
 			vanillaPaxels();
 		}
