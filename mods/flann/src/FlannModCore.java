@@ -273,11 +273,31 @@ public class FlannModCore {
 		}
 		
 		GameRegistry.registerBlock(blockSteel);
-		GameRegistry.registerBlock(concrete);
-		GameRegistry.registerBlock(armedConcrete);
-		GameRegistry.registerBlock(steelBars);
-		GameRegistry.registerBlock(steelBarsDirty);
-		GameRegistry.registerBlock(barbedWire);
+		LanguageRegistry.addName(blockSteel, "Steel Block");
+		
+		if(blockConcrete){
+			GameRegistry.registerBlock(concrete);
+			LanguageRegistry.addName(concrete, "Concrete");
+			
+		}
+		if(blockConcrete && blockAConcrete && blockBars){
+			GameRegistry.registerBlock(armedConcrete);
+			LanguageRegistry.addName(armedConcrete, "Armed Concrete");
+			
+		}
+		if(blockBars){
+			GameRegistry.registerBlock(steelBars);
+			LanguageRegistry.addName(steelBars, "Steel Bars");
+			
+			GameRegistry.registerBlock(steelBarsDirty);
+			LanguageRegistry.addName(steelBarsDirty, "Dirty Steel Bars");
+			
+		}
+		if(blockBarbedwire){
+			GameRegistry.registerBlock(barbedWire);
+			LanguageRegistry.addName(barbedWire, "Barbed Wire");
+			
+		}
 		
 		MinecraftForge.setBlockHarvestLevel(blockSteel, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(concrete, "pickaxe", 1);
@@ -285,19 +305,17 @@ public class FlannModCore {
 		MinecraftForge.setBlockHarvestLevel(steelBars, "pickaxe", 1);
 		MinecraftForge.setBlockHarvestLevel(steelBarsDirty, "pickaxe", 1);
 		
-		LanguageRegistry.addName(blockSteel, "Steel Block");
-		LanguageRegistry.addName(concrete, "Concrete");
-		LanguageRegistry.addName(armedConcrete, "Armed Concrete");
-		LanguageRegistry.addName(steelBars, "Steel Bars");
-		LanguageRegistry.addName(steelBarsDirty, "Dirty Steel Bars");
-		LanguageRegistry.addName(barbedWire, "Barbed Wire");
-		
 		LanguageRegistry.addName(new ItemStack(FRM,1,0), "Smelted Iron");
 		LanguageRegistry.addName(new ItemStack(FRM,1,1), "Steel Ingot");
 		LanguageRegistry.addName(new ItemStack(FRM,1,2), "Steel Sticks");
 		LanguageRegistry.addName(new ItemStack(FRM,1,3), "Redstone Ingot");
-		LanguageRegistry.addName(wirecutter, "Wire Cutter");
-		LanguageRegistry.addName(stickCrafter, "Stick Crafter");
+		
+		if(blockBarbedwire){
+			LanguageRegistry.addName(wirecutter, "Wire Cutter");
+		}
+		if(vanPaxel || exPaxel){
+			LanguageRegistry.addName(stickCrafter, "Stick Crafter");
+		}
 		
 // Smelting
 	// Block of Iron -> Smelted Iron
@@ -309,18 +327,25 @@ public class FlannModCore {
 		GameRegistry.addRecipe(new ItemStack(blockSteel,4), "SCS", "CSC", "SCS", Character.valueOf('C'), new ItemStack(Item.coal, 1, 1), Character.valueOf('S'), new ItemStack(FRM,1,0));
 		
 	// Concrete
-		GameRegistry.addShapelessRecipe(new ItemStack(concrete, 2), Block.gravel, Item.clay, Item.bucketWater);
-		GameRegistry.addShapelessRecipe(new ItemStack(concrete, 4), Block.gravel, Item.clay, Item.bucketWater, Block.gravel, Item.clay, Item.bucketWater);
-		GameRegistry.addShapelessRecipe(new ItemStack(concrete, 6), Block.gravel, Item.clay, Item.bucketWater, Block.gravel, Item.clay, Item.bucketWater, Block.gravel, Item.clay, Item.bucketWater);
-		
+		if(blockConcrete){
+			GameRegistry.addShapelessRecipe(new ItemStack(concrete, 2), Block.gravel, Item.clay, Item.bucketWater);
+			GameRegistry.addShapelessRecipe(new ItemStack(concrete, 4), Block.gravel, Item.clay, Item.bucketWater, Block.gravel, Item.clay, Item.bucketWater);
+			GameRegistry.addShapelessRecipe(new ItemStack(concrete, 6), Block.gravel, Item.clay, Item.bucketWater, Block.gravel, Item.clay, Item.bucketWater, Block.gravel, Item.clay, Item.bucketWater);
+		}
 	// Armed concrete
-		GameRegistry.addRecipe(new ItemStack(armedConcrete, 1), " C ", "CSC", " C ", Character.valueOf('C'), concrete, Character.valueOf('S'), steelBars);
+		if(blockConcrete && blockAConcrete && blockBars){
+			GameRegistry.addRecipe(new ItemStack(armedConcrete, 1), " C ", "CSC", " C ", Character.valueOf('C'), concrete, Character.valueOf('S'), steelBars);
+		}
 		
 	// Steel Bars
-		GameRegistry.addRecipe(new ItemStack(steelBars, 16), "SSS", "SSS", Character.valueOf('S'), new ItemStack(FRM,1,1));
+		if(blockBars){
+			GameRegistry.addRecipe(new ItemStack(steelBars, 16), "SSS", "SSS", Character.valueOf('S'), new ItemStack(FRM,1,1));
+		}
 		
 	// Barbed Wire
-		GameRegistry.addRecipe(new ItemStack(barbedWire, 2), "SSS", "S S", "SSS", Character.valueOf('S'), new ItemStack(FRM,1,2));
+		if(blockBarbedwire){
+			GameRegistry.addRecipe(new ItemStack(barbedWire, 2), "SSS", "S S", "SSS", Character.valueOf('S'), new ItemStack(FRM,1,2));
+		}
 		
 // Items
 	// Steel Block -> Steel Ingot
@@ -336,11 +361,14 @@ public class FlannModCore {
 		GameRegistry.addRecipe(new ItemStack(FRM,4,3), "RRR", "RIR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), Item.ingotIron);
 		
 	// Wire Cutter
-		GameRegistry.addRecipe(new ItemStack(wirecutter), "I I", " I ", "S S", Character.valueOf('I'), new ItemStack(FRM,1,1), Character.valueOf('S'), Item.stick);
+		if(blockBarbedwire){
+			GameRegistry.addRecipe(new ItemStack(wirecutter), "I I", " I ", "S S", Character.valueOf('I'), new ItemStack(FRM,1,1), Character.valueOf('S'), Item.stick);
+		}
 		
 	// Stick Crafter
-		GameRegistry.addShapelessRecipe(new ItemStack(stickCrafter),Block.cobblestone,Item.flint);
-		
+		if(vanPaxel || exPaxel){
+			GameRegistry.addShapelessRecipe(new ItemStack(stickCrafter),Block.cobblestone,Item.flint);
+		}
 	}
 	
 	public static void vanillaPaxels(){
