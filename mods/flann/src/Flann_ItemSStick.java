@@ -53,10 +53,10 @@ public class Flann_ItemSStick extends Item {
 	@Override
 	public String getItemDisplayName(ItemStack is){
 		switch(is.getItemDamage()){
-		case 0:return "sPaxelStickNeth";
-		case 1:return "sPaxelStickRed";
-		case 2:return "sPaxelStickObsid";
-		case 3:return "sPaxelStickSteel";
+		case 0:return "Netherrack Paxelstick";
+		case 1:return "Redstone Paxelstick";
+		case 2:return "Obsidian Paxelstick";
+		case 3:return "Steel Paxelstick";
 		default:return "itemUnknown";
 		}
 	}

@@ -56,11 +56,11 @@ public class Flann_ItemHead extends Item {
 	@Override
 	public String getItemDisplayName(ItemStack is){
 		switch(is.getItemDamage()){
-		case 0:return "headWood";
-		case 1:return "headStone";
-		case 2:return "headIron";
-		case 3:return "headDiamond";
-		case 4:return "headGold";
+		case 0:return "Wooden Paxelhead";
+		case 1:return "Stone Paxelhead";
+		case 2:return "Iron Paxelhead";
+		case 3:return "Diamond Paxelhead";
+		case 4:return "Golden Paxelhead";
 		default:return "itemUnknown";
 		}
 	}

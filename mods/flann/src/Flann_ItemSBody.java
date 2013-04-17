@@ -53,10 +53,10 @@ public class Flann_ItemSBody extends Item {
 	@Override
 	public String getItemDisplayName(ItemStack is){
 		switch(is.getItemDamage()){
-		case 0:return "sbodyNeth";
-		case 1:return "sbodyRed";
-		case 2:return "sbodyObsid";
-		case 3:return "sbodySteel";
+		case 0:return "Netherrack Paxelbody";
+		case 1:return "Redstone Paxelbody";
+		case 2:return "Obsidian Paxelbody";
+		case 3:return "Steel Paxelbody";
 		default:return "itemUnknown";
 		}
 	}

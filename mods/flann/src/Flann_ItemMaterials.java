@@ -53,10 +53,10 @@ public class Flann_ItemMaterials extends Item {
 	@Override
 	public String getItemDisplayName(ItemStack is){
 		switch(is.getItemDamage()){
-		case 0:return "smeltedIron";
-		case 1:return "ingotSteel";
-		case 2:return "stickSteel";
-		case 3:return "ingotRedstone";
+		case 0:return "Smelted Iron";
+		case 1:return "Steel Ingot";
+		case 2:return "Steel Stick";
+		case 3:return "Redstone Ingot";
 		default:return "itemUnknown";
 		}
 	}

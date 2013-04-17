@@ -56,11 +56,11 @@ public class Flann_ItemBody extends Item {
 	@Override
 	public String getItemDisplayName(ItemStack is){
 		switch(is.getItemDamage()){
-		case 0:return "bodyWood";
-		case 1:return "bodyStone";
-		case 2:return "bodyIron";
-		case 3:return "bodyDiamond";
-		case 4:return "bodyGold";
+		case 0:return "Wooden Paxelbody";
+		case 1:return "Stone Paxelbody";
+		case 2:return "Iron Paxelbody";
+		case 3:return "Diamond Paxelbody";
+		case 4:return "Golden Paxelbody";
 		default:return "itemUnknown";
 		}
 	}

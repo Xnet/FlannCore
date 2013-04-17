@@ -53,10 +53,10 @@ public class Flann_ItemSHead extends Item {
 	@Override
 	public String getItemDisplayName(ItemStack is){
 		switch(is.getItemDamage()){
-		case 0:return "sheadNeth";
-		case 1:return "sheadRed";
-		case 2:return "sheadObsid";
-		case 3:return "sheadSteel";
+		case 0:return "Netherrack Paxelhead";
+		case 1:return "Redstone Paxelhead";
+		case 2:return "Obsidian Paxelhead";
+		case 3:return "Steel  Paxelhead";
 		default:return "itemUnknown";
 		}
 	}
