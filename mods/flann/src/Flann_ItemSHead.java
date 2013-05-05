@@ -30,8 +30,8 @@ public class Flann_ItemSHead extends Item {
 	
 	@Override
 	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
-	public void updateIcons(IconRegister IR){
-		this.iconIndex = IR.registerIcon(FlannModCore.modid + ":" + tex + "_1");
+	public void registerIcons(IconRegister IR){
+		this.itemIcon = IR.registerIcon(FlannModCore.modid + ":" + tex + "_1");
 		this.t0 = IR.registerIcon(FlannModCore.modid + ":" + tex + "_1");
 		this.t1 = IR.registerIcon(FlannModCore.modid + ":" + tex + "_2");
 		this.t2 = IR.registerIcon(FlannModCore.modid + ":" + tex + "_3");
@@ -46,7 +46,7 @@ public class Flann_ItemSHead extends Item {
 		case 1:return t1;
 		case 2:return t2;
 		case 3:return t3;
-		default:return iconIndex;
+		default:return itemIcon;
 		}
 	}
 	

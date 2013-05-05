@@ -33,7 +33,7 @@ public class Flann_BlockArmedConcrete extends Block
 
 	@Override
 	@SideOnly(Side.CLIENT) //Client side only
-	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata){ //Tells it which texture from the sprite sheet
+	public Icon getIcon(int side, int metadata){ //Tells it which texture from the sprite sheet
 		switch(side){
 		case 0:return texB;
 		case 1:return texT;

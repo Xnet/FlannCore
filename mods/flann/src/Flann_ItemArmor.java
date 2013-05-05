@@ -22,8 +22,8 @@ public class Flann_ItemArmor extends ItemArmor implements IArmorTextureProvider{
 	
 	@Override
 	@SideOnly(Side.CLIENT) //Makes sure that only the client side can call this method
-	public void updateIcons(IconRegister IR){
-		this.iconIndex = IR.registerIcon(FlannModCore.modid + ":" + tex);
+	public void registerIcons(IconRegister IR){
+		this.itemIcon = IR.registerIcon(FlannModCore.modid + ":" + tex);
 	}
 	
 	@Override

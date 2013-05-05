@@ -22,7 +22,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
-@Mod(modid=FlannModCore.modid,name="Flann Mod",version="#5")
+@Mod(modid=FlannModCore.modid,name="Flann Mod",version="#6")
 public class FlannModCore {
 	public static final String modid = "flann";
 	
@@ -314,7 +314,7 @@ public class FlannModCore {
 		
 // Smelting
 	// Block of Iron -> Smelted Iron
-		GameRegistry.addSmelting(Block.blockSteel.blockID, new ItemStack(FRM,1,0), 5);
+		GameRegistry.addSmelting(Block.blockIron.blockID, new ItemStack(FRM,1,0), 5);
 		
 // Blocks
 	// Smelted Iron -> Steel Block
