@@ -1,4 +1,4 @@
-package mods.flann.src;
+package mods.flanncore.src;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

@@ -1,4 +1,4 @@
-package mods.flann.src;
+package mods.flanncore.src;
 
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;

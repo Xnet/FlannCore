@@ -1,6 +1,6 @@
 // Coded by Flann
 
-package mods.flann.src;
+package mods.flanncore.src;
 
 import java.util.Random;
 
@@ -13,21 +13,24 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class Flann_BlockSteel extends Block
 {
-	protected Flann_BlockSteel (int x)
+	public String tex;
+	
+	protected Flann_BlockSteel (int id, String texture)
 	{
-		super (x, Material.iron);
-		setCreativeTab(FlannModCore.flanntab);
+		super (id, Material.iron);
+		setCreativeTab(CreativeTabs.tabBlock);
+		tex = texture;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister IR){
-		this.blockIcon = IR.registerIcon(FlannModCore.modid + ":" + this.getUnlocalizedName2());
+		this.blockIcon = IR.registerIcon(tex);
 	}
 	
 	public int idDropped(int x, Random rand)
 	{
-		return FlannModCore.blockSteel.blockID;
+		return this.blockID;
 	}
 	
 	public int quantityDropped(Random rand)
