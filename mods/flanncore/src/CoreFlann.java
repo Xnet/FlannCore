@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
-@Mod(modid="FlannCore",name="Flann Core",version="#7")
+@Mod(modid="FlannCore",name="Flann Core",version="#8")
 public class CoreFlann {
 	public static final String texLoc = "flanncore:";
 	
@@ -52,31 +52,74 @@ public class CoreFlann {
 			enableIngotRedstone = config.get("general", "enableIngotRedstone", 	db).getBoolean(db);
 			disableSteelRecipe 	= config.get("general", "disableSteelRecipe", 	db, "Disable the crafting of steel block (iron smelted will be removed)").getBoolean(false);
 		config.save();
+		
+		init_objects();
+		init_addname();
+		
 	}
 	
 	@Init
 	public void load(FMLInitializationEvent event){
-		
+		init_oredict();
+		init_addrecipe();
+		init_harvestlvl();
+	}
+	
+	public void init_objects(){
 		if(enableSteel){
 			blockSteel 		= new Flann_BlockSteel(bSteelID, texLoc+"blockSteel").setUnlocalizedName("blockSteel").setHardness(5F).setResistance(10F).setStepSound(Block.soundMetalFootstep);
 			ingotSteel 		= new Flann_ItemMisc(ingotSteelID, "Steel Ingot", texLoc+"ingotSteel").setUnlocalizedName("ingotSteel");
 			
 			if(!disableSteelRecipe){
 				ironSmelted = new Flann_ItemMisc(ironSmeltedID, "Smelted Iron", texLoc+"ironSmelted").setUnlocalizedName("ironSmelted");
-				//LanguageRegistry.addName(ironSmelted, "Smelted Iron");
-				OreDictionary.registerOre("ironSmelted", ironSmelted);
-				GameRegistry.addSmelting(Block.blockIron.blockID, new ItemStack(ironSmelted), 5);
 			}
-			
 			GameRegistry.registerBlock(blockSteel);
-			MinecraftForge.setBlockHarvestLevel(blockSteel, "pickaxe", 2);
-			
+		}
+		if(enableStickSteel){
+			stickSteel 		= new Flann_ItemMisc(stickSteelID, "Steel Stick", texLoc+"stickSteel" ).setUnlocalizedName("stickSteel");
+		}
+		if(enableIngotRedstone){
+			ingotRedstone 	= new Flann_ItemMisc(ingotRedstoneID, "Redstone Ingot", texLoc+"ingotRedstone").setUnlocalizedName("ingotRedstone");
+		}
+	}
+	
+	public void init_addname(){
+		if(enableSteel){
+			if(!disableSteelRecipe){
+				//LanguageRegistry.addName(ironSmelted, "Smelted Iron");
+			}
 			LanguageRegistry.addName(blockSteel, "Steel Block");
 			//LanguageRegistry.addName(ingotSteel, "Steel Ingot");
-			
+		}
+		if(enableStickSteel){
+			//LanguageRegistry.addName(stickSteel, "Steel Stick");
+		}
+		if(enableIngotRedstone){
+			//LanguageRegistry.addName(ingotRedstone, "Redstone Ingot");
+		}
+	}
+	
+	public void init_oredict(){
+		if(enableSteel){
+			if(!disableSteelRecipe){
+				OreDictionary.registerOre("ironSmelted", ironSmelted);
+			}
 			OreDictionary.registerOre("blockSteel", blockSteel);
 			OreDictionary.registerOre("ingotSteelUnhardened", ingotSteel);
-			
+		}
+		if(enableStickSteel){
+			OreDictionary.registerOre("stickSteel", stickSteel);
+		}
+		if(enableIngotRedstone){
+			OreDictionary.registerOre("ingotRedstone", ingotRedstone);
+		}
+	}
+	
+	public void init_addrecipe(){
+		if(enableSteel){
+			if(!disableSteelRecipe){
+				GameRegistry.addSmelting(Block.blockIron.blockID, new ItemStack(ironSmelted), 5);
+			}
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blockSteel,4), "SCS", "CSC", "SCS", 'C', new ItemStack(Item.coal, 1, 0), 'S', "ironSmelted"));
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blockSteel,4), "SCS", "CSC", "SCS", 'C', new ItemStack(Item.coal, 1, 1), 'S', "ironSmelted"));
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ingotSteel,9), "S", 'S', "blockSteel"));
@@ -84,18 +127,21 @@ public class CoreFlann {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blockSteel,1), "SSS", "SSS", "SSS", 'S', "ingotSteelUnhardened"));
 		}
 		if(enableStickSteel){
-			stickSteel 		= new Flann_ItemMisc(stickSteelID, "Steel Stick", texLoc+"stickSteel" ).setUnlocalizedName("stickSteel");
-			//LanguageRegistry.addName(stickSteel, "Steel Stick");
-			OreDictionary.registerOre("stickSteel", stickSteel);
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(stickSteel,4), "S", "S", 'S', "ingotSteel"));
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(stickSteel,4), "S", "S", 'S', "ingotSteelUnhardened"));
 			
 		}
 		if(enableIngotRedstone){
-			ingotRedstone 	= new Flann_ItemMisc(ingotRedstoneID, "Redstone Ingot", texLoc+"ingotRedstone").setUnlocalizedName("ingotRedstone");
-			//LanguageRegistry.addName(ingotRedstone, "Redstone Ingot");
-			OreDictionary.registerOre("ingotRedstone", ingotRedstone);
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ingotRedstone,4), "RRR", "RIR", "RRR", 'R', Item.redstone, 'I', Item.ingotIron));
 		}
+	}
+	
+	public void init_harvestlvl(){
+		if(enableSteel){
+			if(!disableSteelRecipe){}
+			MinecraftForge.setBlockHarvestLevel(blockSteel, "pickaxe", 2);
+		}
+		if(enableStickSteel){}
+		if(enableIngotRedstone){}
 	}
 }

@@ -24,7 +24,7 @@ public class Flann_ItemMisc extends Item {
 	}
 	
 	@Override
-	public String getItemDisplayName(ItemStack is){
+	public String getItemDisplayName(ItemStack par1ItemStack){
 		return name;
 	}
 	
