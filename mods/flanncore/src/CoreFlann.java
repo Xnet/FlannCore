@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
-@Mod(modid="FlannCore",name="Flann Core",version="#8")
+@Mod(modid="FlannCore",name="Flann Core",version="#9")
 public class CoreFlann {
 	public static final String texLoc = "flanncore:";
 	
