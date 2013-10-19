@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
-@Mod(modid="FlannCore",name="Flann Core",version="#9")
+@Mod(modid="FlannCore",name="Flann Core",version="#10")
 public class CoreFlann {
 	public static final String texLoc = "flanncore:";
 	
@@ -29,7 +29,7 @@ public class CoreFlann {
 	public static int ItemID = 14000; // 4
 	
 	public static boolean enableSteel, enableStickSteel, enableIngotRedstone;
-	public static boolean disableSteelRecipe;
+	public static boolean disableSteelRecipe, combineConfigs;
 	public static int bSteelID;
 	public static int ironSmeltedID, ingotSteelID, stickSteelID, ingotRedstoneID;
 	public static Block blockSteel;
@@ -37,20 +37,38 @@ public class CoreFlann {
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
+		String categoryBlock, categoryItem, categoryGeneral, categoryEnable;
+		
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-			bSteelID 		= config.get("block", "blockSteel", BlockID+0).getInt();
-			
-			ironSmeltedID 	= config.get("item", "ironSmelted", ItemID+0).getInt()-256;
-			ingotSteelID 	= config.get("item", "ingotSteel",  ItemID+1).getInt()-256;
-			stickSteelID 	= config.get("item", "stickSteel", ItemID+2).getInt()-256;
-			ingotRedstoneID = config.get("item", "ingotRedstone", ItemID+3).getInt()-256;
 			
 			boolean db = false; // default boolean
-			enableSteel 		= config.get("general", "enableSteel", 			db).getBoolean(db);
-			enableStickSteel 	= config.get("general", "enableStickSteel", 	db).getBoolean(db);
-			enableIngotRedstone = config.get("general", "enableIngotRedstone", 	db).getBoolean(db);
-			disableSteelRecipe 	= config.get("general", "disableSteelRecipe", 	db, "Disable the crafting of steel block (iron smelted will be removed)").getBoolean(false);
+			combineConfigs = config.get("core", "combineConfigs", db, "Combine all the Flann mods' configs to one common").getBoolean(db);
+			if(combineConfigs){
+				String modname = "core";
+				categoryBlock = modname+"_Block";
+				categoryItem = modname+"_Item";
+				categoryGeneral = modname+"_General";
+				categoryEnable = modname+"_Enable";
+			}else{
+				categoryBlock = "block";
+				categoryItem = "item";
+				categoryGeneral = "general";
+				categoryEnable = "enable";
+			}
+			
+			enableSteel 		= config.get(categoryGeneral, "enableSteel", 			db).getBoolean(db);
+			enableStickSteel 	= config.get(categoryGeneral, "enableStickSteel", 	db).getBoolean(db);
+			enableIngotRedstone = config.get(categoryGeneral, "enableIngotRedstone", 	db).getBoolean(db);
+			disableSteelRecipe 	= config.get(categoryGeneral, "disableSteelRecipe", 	db, "Disable the crafting of steel block (iron smelted will be removed)").getBoolean(db);
+			
+			bSteelID 		= config.get(categoryBlock, "blockSteel", BlockID+0).getInt();
+			
+			ironSmeltedID 	= config.get(categoryItem, "ironSmelted", ItemID+0).getInt()-256;
+			ingotSteelID 	= config.get(categoryItem, "ingotSteel",  ItemID+1).getInt()-256;
+			stickSteelID 	= config.get(categoryItem, "stickSteel", ItemID+2).getInt()-256;
+			ingotRedstoneID = config.get(categoryItem, "ingotRedstone", ItemID+3).getInt()-256;
+			
 		config.save();
 		
 		init_objects();
