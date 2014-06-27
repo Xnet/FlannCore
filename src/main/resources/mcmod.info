@@ -1,0 +1,16 @@
+[
+{
+  "modid": "flanncore",
+  "name": "Flann Core Mod",
+  "description": "The Flann Core mod, not required, but recommended for the Flann's mods",
+  "version": "#11",
+  "mcversion": "1.7.2",
+  "url": "http://tiny.cc/flga-core",
+  "updateUrl": "",
+  "authors": ["Xnet"],
+  "credits": "The entire Flann team!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
